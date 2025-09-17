@@ -1,10 +1,10 @@
 {
-    "name": "cndrsdrmn/php-scaffold",
-    "description": "A boilerplate for modern PHP libraries.",
+    "name": "cndrsdrmn/typed",
+    "description": "A PHP type-safe fluent validator.",
     "keywords": [
         "php",
-        "boilerplate",
-        "package"
+        "type-safe",
+        "fluent"
     ],
     "license": "MIT",
     "authors": [
@@ -25,7 +25,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Cndrsdrmn\\PhpScaffold\\": "src/"
+            "Cndrsdrmn\\Typed\\": "src/"
         }
     },
     "autoload-dev": {
