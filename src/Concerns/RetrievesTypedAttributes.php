@@ -12,8 +12,11 @@ trait RetrievesTypedAttributes
     /**
      * Get the array value of the given key.
      *
-     * @param  array<array-key, mixed>  $default
-     * @return array<array-key, mixed>
+     * @template TArrayKey of array-key
+     * @template TArrayValue
+     *
+     * @param  array<TArrayKey, TArrayValue>  $default
+     * @return array<TArrayKey, TArrayValue>
      */
     public function array(int|string $key, array $default = []): array
     {
@@ -67,8 +70,10 @@ trait RetrievesTypedAttributes
     /**
      * Get the list value of the given key.
      *
-     * @param  list<mixed>  $default
-     * @return list<mixed>
+     * @template TListItem
+     *
+     * @param  list<TListItem>  $default
+     * @return list<TListItem>
      */
     public function list(int|string $key, array $default = []): array
     {
