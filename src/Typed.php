@@ -8,17 +8,19 @@ use Closure;
 use InvalidArgumentException;
 
 /**
- * @template TTypedValue of array<array-key, mixed>
+ * @template TKey of array-key
+ *
+ * @template-covariant TValue
  */
 final readonly class Typed
 {
-    /** @use Concerns\ValidatesAttributes<TTypedValue> */
+    /** @use Concerns\ValidatesAttributes<TKey, TValue> */
     use Concerns\RetrievesTypedAttributes, Concerns\ValidatesAttributes;
 
     /**
      * Create a new class instance.
      *
-     * @param  TTypedValue  $values
+     * @param  array<TKey, TValue>  $values
      */
     public function __construct(private array $values)
     {
@@ -28,10 +30,11 @@ final readonly class Typed
     /**
      * Create a new instance from the given data.
      *
-     * @template TTypedValueOf of array<array-key, mixed>
+     * @template TKeyOf of array-key
+     * @template TValueOf
      *
-     * @param  TTypedValueOf  $values
-     * @return self<TTypedValueOf>
+     * @param  array<TKeyOf, TValueOf>  $values
+     * @return self<TKeyOf, TValueOf>
      */
     public static function of(array $values): self
     {
@@ -41,7 +44,7 @@ final readonly class Typed
     /**
      * Get the passed values.
      *
-     * @return TTypedValue
+     * @return array<TKey, TValue>
      */
     public function passed(): array
     {
@@ -89,13 +92,11 @@ final readonly class Typed
     /**
      * Validate the method against the given keys.
      *
-     * @template TKey of int|string
+     * @template TValidateKey of int|string
      *
      * @param  Closure(mixed): bool  $validator
-     * @param  list<TKey>|TKey  $keys
-     * @return self<TTypedValue>
-     *
-     * @throws InvalidArgumentException
+     * @param  list<TValidateKey>|TValidateKey  $keys
+     * @return self<TKey, TValue>
      */
     private function validate(string $context, Closure $validator, array|int|string $keys, mixed $default = null): self
     {

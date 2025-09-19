@@ -7,20 +7,21 @@ namespace Cndrsdrmn\Typed\Concerns;
 /**
  * @internal
  *
- * @template TTypedValue of array<array-key, mixed>
+ * @template TKey of array-key
+ *
+ * @template-covariant TValue
  */
 trait ValidatesAttributes
 {
     /**
      * Validate the value of the given key is an array.
      *
-     * @template TKey of int|string
-     * @template TArrayKey of array-key
-     * @template TArrayValue
+     * @template TValidateKey of int|string
+     * @template TValidateValue
      *
-     * @param  list<TKey>|TKey  $key
-     * @param  array<TArrayKey, TArrayValue>  $default
-     * @return static<TTypedValue & array<TKey, array<TArrayKey, TArrayValue>>>
+     * @param  list<TValidateKey>|TValidateKey  $key
+     * @param  array<TValidateKey, TValidateValue>  $default
+     * @return self<TKey, TValue & array<TValidateKey, TValidateValue>>
      */
     public function isArray(array|int|string $key, array $default = []): static
     {
@@ -35,10 +36,10 @@ trait ValidatesAttributes
     /**
      * Validate the value of the given key is a boolean.
      *
-     * @template TKey of int|string
+     * @template TValidateKey of int|string
      *
-     * @param  list<TKey>|TKey  $key
-     * @return static<TTypedValue & array<TKey, bool>>
+     * @param  list<TValidateKey>|TValidateKey  $key
+     * @return self<TKey, TValue & array<TValidateKey, bool>>
      */
     public function isBoolean(array|int|string $key, bool $default = false): static
     {
@@ -53,10 +54,10 @@ trait ValidatesAttributes
     /**
      * Validate the value of the given key is a float.
      *
-     * @template TKey of int|string
+     * @template TValidateKey of int|string
      *
-     * @param  list<TKey>|TKey  $key
-     * @return static<TTypedValue & array<TKey, float>>
+     * @param  list<TValidateKey>|TValidateKey  $key
+     * @return self<TKey, TValue & array<TValidateKey, float>>
      */
     public function isFloat(array|int|string $key, float $default = 0.0): static
     {
@@ -71,10 +72,10 @@ trait ValidatesAttributes
     /**
      * Validate the value of the given key is an integer.
      *
-     * @template TKey of int|string
+     * @template TValidateKey of int|string
      *
-     * @param  list<TKey>|TKey  $key
-     * @return static<TTypedValue & array<TKey, int>>
+     * @param  list<TValidateKey>|TValidateKey  $key
+     * @return self<TKey, TValue & array<TValidateKey, int>>
      */
     public function isInteger(array|int|string $key, int $default = 0): static
     {
@@ -89,12 +90,12 @@ trait ValidatesAttributes
     /**
      * Validate the value of the given key is a list.
      *
-     * @template TKey of int|string
-     * @template TListItem
+     * @template TValidateKey of int|string
+     * @template TValidateValue
      *
-     * @param  list<TKey>|TKey  $key
-     * @param  list<TListItem>  $default
-     * @return static<TTypedValue & array<TKey, list<TListItem>>>
+     * @param  list<TValidateKey>|TValidateKey  $key
+     * @param  list<TValidateValue>  $default
+     * @return self<TKey, TValue & array<TValidateKey, list<TValidateValue>>>
      */
     public function isList(array|int|string $key, array $default = []): static
     {
@@ -109,10 +110,10 @@ trait ValidatesAttributes
     /**
      * Validate the value of the given key is a string.
      *
-     * @template TKey of int|string
+     * @template TValidateKey of int|string
      *
-     * @param  list<TKey>|TKey  $key
-     * @return static<TTypedValue & array<TKey, string>>
+     * @param  list<TValidateKey>|TValidateKey  $key
+     * @return self<TKey, TValue & array<TValidateKey, string>>
      */
     public function isString(array|int|string $key, string $default = ''): static
     {
