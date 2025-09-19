@@ -15,11 +15,14 @@ trait ValidatesAttributes
      * Validate the value of the given key is an array.
      *
      * @template TKey of int|string
+     * @template TArrayKey of array-key
+     * @template TArrayValue
      *
      * @param  list<TKey>|TKey  $key
-     * @return static<TTypedValue & array<TKey, array<array-key, mixed>>>
+     * @param  array<TArrayKey, TArrayValue>  $default
+     * @return static<TTypedValue & array<TKey, array<TArrayKey, TArrayValue>>>
      */
-    public function isArray(array|int|string $key, mixed $default = null): static
+    public function isArray(array|int|string $key, array $default = []): static
     {
         return $this->validate(
             context: 'array',
@@ -37,7 +40,7 @@ trait ValidatesAttributes
      * @param  list<TKey>|TKey  $key
      * @return static<TTypedValue & array<TKey, bool>>
      */
-    public function isBoolean(array|int|string $key, mixed $default = null): static
+    public function isBoolean(array|int|string $key, bool $default = false): static
     {
         return $this->validate(
             context: 'boolean',
@@ -55,7 +58,7 @@ trait ValidatesAttributes
      * @param  list<TKey>|TKey  $key
      * @return static<TTypedValue & array<TKey, float>>
      */
-    public function isFloat(array|int|string $key, mixed $default = null): static
+    public function isFloat(array|int|string $key, float $default = 0.0): static
     {
         return $this->validate(
             context: 'float',
@@ -73,7 +76,7 @@ trait ValidatesAttributes
      * @param  list<TKey>|TKey  $key
      * @return static<TTypedValue & array<TKey, int>>
      */
-    public function isInteger(array|int|string $key, mixed $default = null): static
+    public function isInteger(array|int|string $key, int $default = 0): static
     {
         return $this->validate(
             context: 'integer',
@@ -87,11 +90,13 @@ trait ValidatesAttributes
      * Validate the value of the given key is a list.
      *
      * @template TKey of int|string
+     * @template TListItem
      *
      * @param  list<TKey>|TKey  $key
-     * @return static<TTypedValue & array<TKey, list<mixed>>>
+     * @param  list<TListItem>  $default
+     * @return static<TTypedValue & array<TKey, list<TListItem>>>
      */
-    public function isList(array|int|string $key, mixed $default = null): static
+    public function isList(array|int|string $key, array $default = []): static
     {
         return $this->validate(
             context: 'list',
@@ -109,7 +114,7 @@ trait ValidatesAttributes
      * @param  list<TKey>|TKey  $key
      * @return static<TTypedValue & array<TKey, string>>
      */
-    public function isString(array|int|string $key, mixed $default = null): static
+    public function isString(array|int|string $key, string $default = ''): static
     {
         return $this->validate(
             context: 'string',
