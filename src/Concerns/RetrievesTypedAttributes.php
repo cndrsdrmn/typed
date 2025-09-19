@@ -22,7 +22,7 @@ trait RetrievesTypedAttributes
     {
         return $this->verify(
             context: 'array',
-            validator: fn ($value) => is_array($value),
+            validator: fn ($value): bool => is_array($value),
             key: $key,
             default: $default
         );
@@ -35,7 +35,7 @@ trait RetrievesTypedAttributes
     {
         return $this->verify(
             context: 'boolean',
-            validator: fn ($value) => is_bool($value),
+            validator: fn ($value): bool => is_bool($value),
             key: $key,
             default: $default
         );
@@ -48,7 +48,7 @@ trait RetrievesTypedAttributes
     {
         return $this->verify(
             context: 'float',
-            validator: fn ($value) => is_float($value),
+            validator: fn ($value): bool => is_float($value),
             key: $key,
             default: $default
         );
@@ -61,7 +61,7 @@ trait RetrievesTypedAttributes
     {
         return $this->verify(
             context: 'integer',
-            validator: fn ($value) => is_int($value),
+            validator: fn ($value): bool => is_int($value),
             key: $key,
             default: $default
         );
@@ -79,7 +79,7 @@ trait RetrievesTypedAttributes
     {
         return $this->verify(
             context: 'list',
-            validator: fn ($value) => is_array($value) && array_is_list($value),
+            validator: fn ($value): bool => is_array($value) && array_is_list($value),
             key: $key,
             default: $default
         );
@@ -92,7 +92,7 @@ trait RetrievesTypedAttributes
     {
         return $this->verify(
             context: 'string',
-            validator: fn ($value) => is_string($value),
+            validator: fn ($value): bool => is_string($value),
             key: $key,
             default: $default
         );

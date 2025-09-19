@@ -27,7 +27,7 @@ trait ValidatesAttributes
     {
         return $this->validate(
             context: 'array',
-            validator: fn ($value) => is_array($value),
+            validator: fn ($value): bool => is_array($value),
             keys: $key,
             default: $default,
         );
@@ -45,7 +45,7 @@ trait ValidatesAttributes
     {
         return $this->validate(
             context: 'boolean',
-            validator: fn ($value) => is_bool($value),
+            validator: fn ($value): bool => is_bool($value),
             keys: $key,
             default: $default,
         );
@@ -63,7 +63,7 @@ trait ValidatesAttributes
     {
         return $this->validate(
             context: 'float',
-            validator: fn ($value) => is_float($value),
+            validator: fn ($value): bool => is_float($value),
             keys: $key,
             default: $default,
         );
@@ -81,7 +81,7 @@ trait ValidatesAttributes
     {
         return $this->validate(
             context: 'integer',
-            validator: fn ($value) => is_int($value),
+            validator: fn ($value): bool => is_int($value),
             keys: $key,
             default: $default,
         );
@@ -101,7 +101,7 @@ trait ValidatesAttributes
     {
         return $this->validate(
             context: 'list',
-            validator: fn ($value) => is_array($value) && array_is_list($value),
+            validator: fn ($value): bool => is_array($value) && array_is_list($value),
             keys: $key,
             default: $default,
         );
@@ -119,7 +119,7 @@ trait ValidatesAttributes
     {
         return $this->validate(
             context: 'string',
-            validator: fn ($value) => is_string($value),
+            validator: fn ($value): bool => is_string($value),
             keys: $key,
             default: $default,
         );
