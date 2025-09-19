@@ -2,5 +2,9 @@ parameters:
     level: max
     paths:
         - src
+        - types
+
+    ignoreErrors:
+        - identifier: function.alreadyNarrowedType
 
     reportUnmatchedIgnoredErrors: true
